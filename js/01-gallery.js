@@ -18,3 +18,11 @@ const galleryMarkup = galleryItems
   .join("");
 
 galleryEl.insertAdjacentHTML("afterbegin", galleryMarkup);
+
+galleryEl.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  if (evt.target.nodeName !== "IMG") {
+    return;
+  }
+  console.log(evt.target.dataset.source);
+});
