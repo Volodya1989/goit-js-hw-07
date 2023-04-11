@@ -19,7 +19,7 @@ const galleryMarkup = galleryItems
 
 galleryEl.insertAdjacentHTML("afterbegin", galleryMarkup);
 
-galleryEl.addEventListener("click", (evt) => {
+const onModalWindow = (evt) => {
   evt.preventDefault();
   if (evt.target.nodeName !== "IMG") {
     return;
@@ -28,4 +28,5 @@ galleryEl.addEventListener("click", (evt) => {
     <img src="${evt.target.dataset.source}" >
 `);
   instance.show();
-});
+};
+galleryEl.addEventListener("click", onModalWindow);
