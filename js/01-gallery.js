@@ -18,7 +18,6 @@ const galleryMarkup = galleryItems
   .join("");
 
 galleryEl.insertAdjacentHTML("afterbegin", galleryMarkup);
-
 const onModalWindow = (evt) => {
   evt.preventDefault();
   if (evt.target.nodeName !== "IMG") {
@@ -27,6 +26,14 @@ const onModalWindow = (evt) => {
   const instance = basicLightbox.create(`
     <img src="${evt.target.dataset.source}" >
 `);
+
   instance.show();
+  const isModalOpen = evt.target.classList.contains(".basicLightbox");
+  if (!isModalOpen) {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") instance.close();
+    });
+  }
 };
+
 galleryEl.addEventListener("click", onModalWindow);
