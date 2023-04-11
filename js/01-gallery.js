@@ -1,5 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
+import * as basicLightbox from "basiclightbox";
 
 const galleryEl = document.querySelector("ul.gallery");
 
@@ -17,6 +18,14 @@ const galleryMarkup = galleryItems
   })
   .join("");
 
+
+const instance = basicLightbox.create(`
+    <img src="assets/images/image.png" width="800" height="600">
+`);
+instance.show();
+
+
+
 galleryEl.insertAdjacentHTML("afterbegin", galleryMarkup);
 
 galleryEl.addEventListener("click", (evt) => {
@@ -24,5 +33,6 @@ galleryEl.addEventListener("click", (evt) => {
   if (evt.target.nodeName !== "IMG") {
     return;
   }
-  console.log(evt.target.dataset.source);
+    console.log(evt.target.dataset.source);
+
 });
