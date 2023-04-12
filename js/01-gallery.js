@@ -23,17 +23,22 @@ const onModalWindow = (evt) => {
   if (evt.target.nodeName !== "IMG") {
     return;
   }
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <img src="${evt.target.dataset.source}" >
-`);
-
+`,
+    {
+      onShow: () => {
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") instance.close();
+        });
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", () => {});
+      },
+    }
+  );
   instance.show();
-  const isModalOpen = evt.target.classList.contains(".basicLightbox");
-  if (!isModalOpen) {
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") instance.close();
-    });
-  }
 };
 
 galleryEl.addEventListener("click", onModalWindow);
