@@ -17,17 +17,9 @@ const galleryMarkup = galleryItems
   .join("");
 
 galleryEl.insertAdjacentHTML("afterbegin", galleryMarkup);
-const onModalWindow = (evt) => {
-  evt.preventDefault();
-  if (evt.target.nodeName !== "IMG") {
-    return;
-  }
 
-  new SimpleLightbox(".gallery__item a", {
-    captionPosition: "bottom",
-    captionsData: "alt",
-    captionDelay: 250,
-  });
-};
-
-galleryEl.addEventListener("click", onModalWindow);
+new SimpleLightbox(".gallery__item a", {
+  captionPosition: "bottom",
+  captionsData: "alt",
+  captionDelay: 250,
+});
